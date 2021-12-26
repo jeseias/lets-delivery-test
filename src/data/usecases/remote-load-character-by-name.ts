@@ -1,6 +1,6 @@
 import { UnexpectedError } from "@/domain/errors/unexpected-error";
 import { LoadCharacterByName } from "@/domain/usecases/load-character-by-name";
-import { HttpClient, HttpStatusCode } from "../protocols/http/http-client";
+import { HttpClient, HttpStatusCode } from "@/data/protocols/http/http-client";
 
 export class RemoteLoadCharacterByName implements LoadCharacterByName {
   constructor(

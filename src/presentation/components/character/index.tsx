@@ -9,8 +9,8 @@ import { AppRoutes } from '@/main/constants'
 const Character: React.FC<SearchCharacter.Model> = ({ name, img, psiPowers }) => {
   const navigate = useNavigate()
   const slug = name.replace(' ', '-')
-  const detailedLink = `${AppRoutes.Detailed}/${slug}`
-  const handleGoToDetailedPage = () => navigate(detailedLink, { state: { name } })
+  const CharacterLink = `${AppRoutes.Characters}/${slug}`
+  const handleGoToDetailedPage = () => navigate(CharacterLink, { state: { name } })
   return (
     <Flex p="2rem" my="1rem" alignItems="center">
       <Box h="15rem" mr="2rem">
