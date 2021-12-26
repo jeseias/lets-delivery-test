@@ -5,13 +5,13 @@ import { Wrapper } from '@/presentation/layouts'
 
 const Router: React.FC = () => {
   return (
-    <Wrapper>
-      <BrowserRouter>
+    <BrowserRouter>
+      <Wrapper>
         <Routes>
           <Route path="/" element={<MakeHomepage />}/>
         </Routes>
-      </BrowserRouter>
-    </Wrapper>
+      </Wrapper>
+    </BrowserRouter>
   )
 }
 

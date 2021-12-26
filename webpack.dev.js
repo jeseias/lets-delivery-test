@@ -1,5 +1,5 @@
-const { DefinePlugin } = require("webpack");
-const { default: merge } = require("webpack-merge");
+const { DefinePlugin } = require('webpack')
+const { default: merge } = require('webpack-merge')
 const common = require('./webpack.common')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
@@ -26,11 +26,11 @@ module.exports = merge(common, {
     port: 8080
   },
   plugins: [
-     new DefinePlugin({
+    new DefinePlugin({
       'process.env.API_URL': JSON.stringify('https://psychonauts-api.netlify.app/')
-     }),
-     new HtmlWebpackPlugin({
+    }),
+    new HtmlWebpackPlugin({
       template: './template.dev.html'
-     })
+    })
   ]
 })
