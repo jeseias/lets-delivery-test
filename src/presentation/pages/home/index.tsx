@@ -11,12 +11,24 @@ type HomepageProps = {
 const Homepage: React.FC<HomepageProps> = ({ searchCharacter }) => {
   const [name, setName] = useState('')
   const [character, setCharacter] = useState<SearchCharacter.Model>()
+  const [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
+
+  const showError = () => {
+    setError(true)
+    setTimeout(() => {
+      setError(false)
+    }, 5000)
+  }
 
   const handleSearchCharacter = async () => {
     setLoading(true)
     const response = await searchCharacter.search(name)
-    setCharacter(response)
+    if (response) {
+      setCharacter(response)
+    } else {
+      showError()
+    }
     setLoading(false)
   }
 
@@ -46,6 +58,7 @@ const Homepage: React.FC<HomepageProps> = ({ searchCharacter }) => {
       </Flex>
       <Box>
         {loading && <h1>Loading...</h1>}
+        {!loading && error && <h1>Character Not Found</h1>}
         {character && <Character {...character} />}
       </Box>
     </Box>
