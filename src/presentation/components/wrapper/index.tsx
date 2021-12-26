@@ -10,7 +10,9 @@ const Wrapper: React.FC = ({ children }) => {
         <Header />
         <Sidebar />
         <Box gridColumn="2/-1" gridRow="2/-1">
-          {children}
+          <Box>
+            {children}
+          </Box>
         </Box>
       </Grid>
     </ChakraProvider>
