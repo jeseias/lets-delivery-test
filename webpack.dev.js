@@ -27,7 +27,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new DefinePlugin({
-      'process.env.API_URL': JSON.stringify('https://psychonauts-api.netlify.app/')
+      'process.env.API_URL': JSON.stringify('https://psychonauts-api.herokuapp.com/api/')
     }),
     new HtmlWebpackPlugin({
       template: './template.dev.html'
