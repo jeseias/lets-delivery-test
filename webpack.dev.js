@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = merge(common, {
   mode: 'development',
-  modules: {
+  module: {
     rules: [
       {
         test: /.ts(x?)$/,
