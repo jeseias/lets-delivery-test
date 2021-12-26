@@ -1,7 +1,8 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
+import Router from '@/main/routes/router'
 
 ReactDOM.render(
-  <p>James Bond</p>,
+  <Router />,
   document.getElementById('main')
 )
