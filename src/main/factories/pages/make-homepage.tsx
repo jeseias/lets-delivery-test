@@ -1,9 +1,9 @@
-import Homepage from '@/presentation/pages/homepage'
 import React from 'react'
-import { makeRemoteSearchCharacter } from '../usecases/remote-search-characters-factory'
+import { HomePage } from '@/presentation/pages'
+import { makeRemoteSearchCharacter } from '@/main/factories/usecases/remote-search-characters-factory'
 
-export const MakeHomepage: React.FC = () => {
+export const MakeHomePage: React.FC = () => {
   return (
-    <Homepage searchCharacter={makeRemoteSearchCharacter()} />
+    <HomePage searchCharacter={makeRemoteSearchCharacter()} />
   )
 }
