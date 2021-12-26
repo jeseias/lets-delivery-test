@@ -1,4 +1,5 @@
-import path = require('path')
+const path = require('path')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
   entry: './src/main/index.tsx',
@@ -13,4 +14,7 @@ module.exports = {
       '@': path.join(__dirname, 'src')
     }
   },
+  plugins: [
+    new CleanWebpackPlugin()
+  ]
 }
