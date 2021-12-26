@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import React from 'react'
 import { MakeHomepage } from '@/main/factories/pages/make-homepage'
-import { Wrapper } from '@/presentation/layouts'
+import { Wrapper } from '@/presentation/components'
 
 const Router: React.FC = () => {
   return (
