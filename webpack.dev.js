@@ -8,13 +8,13 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /.ts(x?)$/,
+        test: /\.ts(x?)$/,
         loader: 'ts-loader',
         exclude: /node_modules/
       }
     ]
   },
-  devtool: 'inline-source-map',
+  // devtool: 'inline-source-map',
   devServer: {
     devMiddleware: {
       writeToDisk: true
