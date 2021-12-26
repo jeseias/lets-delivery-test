@@ -1,4 +1,5 @@
-export type Character = {
+export type RemoteCharacterModel = {
+  _id: string
   name: string
   img: string
   gender: string
