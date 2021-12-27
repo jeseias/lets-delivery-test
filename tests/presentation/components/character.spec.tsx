@@ -4,7 +4,7 @@ import { mockRemoteCharacterModel } from '../../data/mocks/mock-remote-character
 import { __render } from '../mocks/render-helper'
 import { screen, fireEvent } from '@testing-library/react'
 import { useNavigate } from 'react-router-dom'
-import { AppRoutes } from '@/main/constants'
+import { makeDetailedRoute } from '@/presentation/utils/utils'
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom') as any,
@@ -26,10 +26,9 @@ describe(`${Character.name} Component`, () => {
 
   it('Should route to DetailedCharacter page when see more button is clicked', () => {
     makeSut()
-    const slug = character.name.replace(' ', '-')
-    const CharacterLink = `${AppRoutes.Characters}/${slug}`
+    const detailedRoute = makeDetailedRoute(character.name)
     const btn = screen.getByLabelText('click to see more')
     fireEvent.click(btn)
-    expect(useNavigate()).toHaveBeenCalledWith(CharacterLink, { state: { name: character.name } })
+    expect(useNavigate()).toHaveBeenCalledWith(detailedRoute, { state: { name: character.name } })
   })
 })
