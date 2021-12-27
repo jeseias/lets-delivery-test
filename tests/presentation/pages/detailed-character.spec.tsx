@@ -17,6 +17,7 @@ type SutTypes = {
   saveFavorites: jest.Mock<any, any>
   loadCharacter: LoadCharacterByName
 }
+
 const makeSut = (): SutTypes => {
   class LoadCharacterByNameSpy implements LoadCharacterByName {
     async load (name: string): Promise<Character> {
@@ -39,7 +40,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe(`${DetailedCharacterPage.name} Page`, () => {
+describe('DetailedCharacterPage', () => {
   it('Should render as expected with all character data', async () => {
     makeSut().sut()
 
@@ -83,6 +84,6 @@ describe(`${DetailedCharacterPage.name} Page`, () => {
 
     expect(screen.getByText('Loading...')).toBeInTheDocument()
     await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
-    await waitFor(() => expect(screen.getByText('No Character found')).toBeInTheDocument())
+    expect(screen.getByText('No Character found')).toBeInTheDocument()
   })
 })

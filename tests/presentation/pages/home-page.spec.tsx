@@ -25,7 +25,7 @@ const makeSut = (): SutTypes => {
   }
 }
 
-describe(`${HomePage.name} Component`, () => {
+describe('Homepage Component', () => {
   it('Should render as expected', () => {
     makeSut().sut()
     expect(screen.getByPlaceholderText('Search your character here')).toBeInTheDocument()
