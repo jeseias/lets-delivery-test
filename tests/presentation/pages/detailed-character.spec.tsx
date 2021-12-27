@@ -3,16 +3,17 @@ import { Character } from '@/domain/models/character'
 import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
 import { DetailedCharacterPage } from '@/presentation/pages'
 import { __render } from '../mocks/render-helper'
-import { screen, waitFor } from '@testing-library/react'
+import { fireEvent, RenderResult, screen, waitFor } from '@testing-library/react'
 import { mockCharacterModel } from '../../domain/mocks/mock-character'
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom') as any,
-  useParams: jest.fn().mockReturnValue({ name: 'james bond' })
+  useParams: jest.fn().mockReturnValue({ name: 'james-bond' })
 }))
 
 const data = mockCharacterModel()
 type SutTypes = {
+  sut: () => RenderResult
   saveFavorites: jest.Mock<any, any>
   loadCharacter: LoadCharacterByName
 }
@@ -24,7 +25,7 @@ const makeSut = (): SutTypes => {
   }
   const saveFavorites = jest.fn()
   const loadCharacter = new LoadCharacterByNameSpy()
-  __render(() =>
+  const sut = () => __render(() =>
     <DetailedCharacterPage
       loadCharacter={loadCharacter}
       saveFavorites={saveFavorites}
@@ -32,35 +33,56 @@ const makeSut = (): SutTypes => {
   )
 
   return {
+    sut,
     saveFavorites,
     loadCharacter
   }
 }
 
 describe(`${DetailedCharacterPage.name} Page`, () => {
-  beforeEach(() => {
-    jest.clearAllMocks()
-  })
-
   it('Should render as expected with all character data', async () => {
-    makeSut()
-    expect(screen.getByText('Loading...')).toBeInTheDocument()
+    makeSut().sut()
 
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
     await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
 
-    await waitFor(() => expect(screen.getByAltText(data.name)).toBeInTheDocument())
-    await waitFor(() => expect(screen.getByText(data.name)).toBeInTheDocument())
-    await waitFor(() => expect(screen.getByText('Powers')).toBeInTheDocument())
-    await waitFor(() => expect(screen.getByLabelText(data.gender)).toBeInTheDocument())
+    expect(screen.getByAltText(data.name)).toBeInTheDocument()
+    expect(screen.getByText(data.name)).toBeInTheDocument()
+    expect(screen.getByText('Powers')).toBeInTheDocument()
+    expect(screen.getByLabelText(data.gender)).toBeInTheDocument()
   })
 
   it.each(data.psiPowers)('Should render each character power', async item => {
-    makeSut()
+    makeSut().sut()
 
     expect(screen.getByText('Loading...')).toBeInTheDocument()
     await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
 
-    await waitFor(() => expect(screen.getByText(item.name)).toBeInTheDocument())
-    await waitFor(() => expect(screen.getByText(item.description)).toBeInTheDocument())
+    expect(screen.getByText(item.name)).toBeInTheDocument()
+    expect(screen.getByText(item.description)).toBeInTheDocument()
+  })
+
+  it('Should call saveFavorites with call correct values', async () => {
+    const { saveFavorites, sut } = makeSut()
+    sut()
+
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
+
+    fireEvent.click(screen.getByLabelText('add to favorites'))
+    expect(saveFavorites).toHaveBeenCalledWith({
+      name: 'james bond',
+      img: data.img
+    })
+  })
+
+  it('Should render NotFound if LoadCharacterByName returns 404', async () => {
+    const { loadCharacter, sut } = makeSut()
+    jest.spyOn(loadCharacter, 'load').mockReturnValueOnce(null)
+    sut()
+
+    expect(screen.getByText('Loading...')).toBeInTheDocument()
+    await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
+    await waitFor(() => expect(screen.getByText('No Character found')).toBeInTheDocument())
   })
 })

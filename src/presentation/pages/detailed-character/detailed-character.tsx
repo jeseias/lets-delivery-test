@@ -14,10 +14,11 @@ type DetailedCharacterProps = {
 
 const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, saveFavorites }: DetailedCharacterProps) => {
   const [character, setCharacter] = useState<SearchCharacter.Model>()
+  const [characterName, setCharacterName] = useState('')
   const [loading, setLoading] = useState(false)
   const name = useParams().name
 
-  const handleLoadCharacter = async (characterName: string) => {
+  const handleLoadCharacter = async () => {
     setLoading(true)
     const httpResponse = await loadCharacter.load(characterName)
     if (httpResponse) {
@@ -25,11 +26,14 @@ const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, sa
     }
     setLoading(false)
   }
-  useEffect(() => { handleLoadCharacter(name.replace('-', ' ')) }, [name])
+  useEffect(() => {
+    setCharacterName(name.replace('-', ' '))
+    handleLoadCharacter()
+  }, [name])
 
   const handleAddToFavorites = () => {
     saveFavorites({
-      name: 'characterName',
+      name: characterName,
       img: character.img
     })
   }
@@ -67,7 +71,7 @@ const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, sa
         <Divider my="1rem"/>
         <Flex mt="1rem" justifyContent="space-between">
           <Tooltip label="Add to favorites" placement="left">
-            <Button mr="1rem" onClick={handleAddToFavorites}>
+            <Button mr="1rem" onClick={handleAddToFavorites} aria-label="add to favorites">
               <MdFavorite />
             </Button>
           </Tooltip>
