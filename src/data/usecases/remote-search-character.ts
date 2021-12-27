@@ -2,7 +2,7 @@ import { UnexpectedError } from "@/domain/errors/unexpected-error";
 import { SearchCharacter } from "@/domain/usecases/search-character";
 import { HttpClient, HttpStatusCode } from "../protocols/http/http-client";
 
-export class RemoteSearchCharacters implements SearchCharacter {
+export class RemoteSearchCharacter implements SearchCharacter {
   constructor(
     private readonly url: string,
     private readonly httpClient: HttpClient<SearchCharacter.Model>

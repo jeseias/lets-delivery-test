@@ -14,7 +14,7 @@ export type HttpRequest = {
 
 export type HttpResponse<T = any> =  {
   statusCode: HttpStatusCode
-  body: T
+  body?: T
 }
 export interface HttpClient<R = any> {
   request(data: HttpRequest): Promise<HttpResponse<R>>

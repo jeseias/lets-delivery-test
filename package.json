@@ -6,7 +6,10 @@
   "license": "MIT",
   "scripts": {
     "dev:base": "webpack-dev-server --config webpack.dev.js",
-    "dev": "yarn dev:base -- --open"
+    "dev": "yarn dev:base -- --open",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "yarn test -- --watch",
+    "test:ci": "yarn test -- --coverage"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.1",
