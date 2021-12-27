@@ -14,13 +14,22 @@ const FavoritesPage: React.FC<Props> = ({ fetch, remove }: Props) => {
 
   useEffect(() => {
     setCharacters(fetch())
-  }, [characters])
+  }, [])
+
+  const handleRemove = (name: string) => {
+    remove(name)
+    setCharacters(fetch())
+  }
 
   return (
     <Box p="5vw">
       <Heading>Favorites Page</Heading>
       <Grid gridTemplateColumns="repeat(4, 1fr)" gap="1rem" gridTemplateRows="repeat(auto, 5rem)">
-        {characters.map(character => <FavoriteCharacter key={uuid()} character={character} remove={remove} />)}
+        {characters
+          ? (
+              characters.map(character => <FavoriteCharacter key={uuid()} character={character} remove={handleRemove} />)
+            )
+          : <p>Found 0 favorites</p>}
       </Grid>
     </Box>
   )
