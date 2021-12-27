@@ -25,6 +25,12 @@ describe(`${FavoriteCharacter.name} Component`, () => {
     expect(screen.getByLabelText('click to see more')).toBeInTheDocument()
   }) 
 
+  it('Should call remove with correct name', () => {
+    makeSut()
+    fireEvent.click(screen.getByLabelText('click to remove from favorites'))
+    expect(remove).toHaveBeenCalledWith(character.name)
+  })
+
   it('Should route to DetailedCharacter page when see more button is clicked', () => { 
     makeSut();
     const slug = character.name.replace(' ', '-')
