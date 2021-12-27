@@ -1,6 +1,6 @@
 import { UnexpectedError } from '@/domain/errors/unexpected-error'
 import { SearchCharacter } from '@/domain/usecases/search-character'
-import { HttpClient, HttpStatusCode } from '../protocols/http/http-client'
+import { HttpClient, HttpStatusCode } from '@/data/protocols/http/http-client'
 
 export class RemoteSearchCharacter implements SearchCharacter {
   constructor (

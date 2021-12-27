@@ -1,16 +1,15 @@
 import React from 'react'
 import { Box, Button, Divider, Flex, Heading, Image, Tooltip } from '@chakra-ui/react'
-import { SearchCharacter } from '@/domain/usecases/search-character'
-import { v4 as uuid } from 'uuid'
 import { MdFavorite, MdRemoveRedEye } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
-import { AppRoutes } from '@/main/constants'
+import { v4 as uuid } from 'uuid'
+
+import { SearchCharacter } from '@/domain/usecases/search-character'
+import { makeDetailedRoute } from '@/presentation/utils/utils'
 
 const Character: React.FC<SearchCharacter.Model> = ({ name, img, psiPowers }) => {
   const navigate = useNavigate()
-  const slug = name.replace(' ', '-')
-  const CharacterLink = `${AppRoutes.Characters}/${slug}`
-  const handleGoToDetailedPage = () => navigate(CharacterLink, { state: { name } })
+  const handleGoToDetailedPage = () => navigate(makeDetailedRoute(name), { state: { name } })
   return (
     <Flex p="2rem" my="1rem" alignItems="center">
       <Box h="15rem" mr="2rem">

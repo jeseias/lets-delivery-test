@@ -25,6 +25,7 @@
   ],
   "rules": {
     "no-use-before-define": "off",
-    "no-redeclare": "off"
+    "no-redeclare": "off",
+    "no-useless-constructor": "off"
   }
 }
