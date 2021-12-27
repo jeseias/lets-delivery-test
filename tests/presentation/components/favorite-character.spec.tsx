@@ -24,4 +24,13 @@ describe(`${FavoriteCharacter.name} Component`, () => {
     expect(screen.getByLabelText('click to remove from favorites')).toBeInTheDocument()
     expect(screen.getByLabelText('click to see more')).toBeInTheDocument()
   }) 
+
+  it('Should route to DetailedCharacter page when see more button is clicked', () => { 
+    makeSut();
+    const slug = character.name.replace(' ', '-')
+    const CharacterLink = `${AppRoutes.Characters}/${slug}` 
+    const btn = screen.getByLabelText('click to see more')
+    fireEvent.click(btn) 
+    expect(useNavigate()).toHaveBeenCalledWith(CharacterLink, { state: {name: character.name} })
+  })
 });
