@@ -4,11 +4,11 @@ import { MdSearch } from 'react-icons/md'
 import { SearchCharacter } from '@/domain/usecases/search-character'
 import { Character } from '@/presentation/components'
 
-type HomepageProps = {
+type Props = {
   searchCharacter: SearchCharacter
 }
 
-const Homepage: React.FC<HomepageProps> = ({ searchCharacter }) => {
+const Homepage: React.FC<Props> = ({ searchCharacter }: Props) => {
   const [name, setName] = useState('')
   const [character, setCharacter] = useState<SearchCharacter.Model>()
   const [error, setError] = useState(false)
@@ -52,6 +52,7 @@ const Homepage: React.FC<HomepageProps> = ({ searchCharacter }) => {
           bg="#eee"
           h="100%"
           onClick={handleSearchCharacter}
+          aria-label="click to search"
         >
           <MdSearch size="7rem" color="#111"/>
         </Flex>

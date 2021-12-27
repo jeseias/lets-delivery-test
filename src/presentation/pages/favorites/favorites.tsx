@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Box, Grid, Heading } from '@chakra-ui/react'
 import { FavoriteCharacterModel } from '@/domain/models/character'
 import { FavoriteCharacter } from '@/presentation/components'
+import { v4 as uuid } from 'uuid'
 
 type Props = {
   fetch: () => FavoriteCharacterModel[]
@@ -19,7 +20,7 @@ const FavoritesPage: React.FC<Props> = ({ fetch, remove }: Props) => {
     <Box p="5vw">
       <Heading>Favorites Page</Heading>
       <Grid gridTemplateColumns="repeat(4, 1fr)" gap="1rem" gridTemplateRows="repeat(auto, 5rem)">
-        {characters.map(character => <FavoriteCharacter character={character} remove={remove}/>)}
+        {characters.map(character => <FavoriteCharacter key={uuid()} character={character} remove={remove}/>)}
       </Grid>
     </Box>
   )
