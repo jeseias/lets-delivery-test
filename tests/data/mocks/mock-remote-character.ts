@@ -2,7 +2,7 @@ import { RemoteCharacterModel } from '@/data/models/remote-search-character-mode
 
 import * as faker from 'faker'
 
-export const mockCharacterModel = (): RemoteCharacterModel => ({
+export const mockRemoteCharacterModel = (): RemoteCharacterModel => ({
   _id: faker.datatype.uuid(),
   name: faker.name.gender(),
   gender: faker.name.gender() as any,

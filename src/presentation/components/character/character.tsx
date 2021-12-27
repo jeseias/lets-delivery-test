@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Button, Divider, Flex, Heading, Image, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Button, Divider, Flex, Heading, Image, Tooltip } from '@chakra-ui/react'
 import { SearchCharacter } from '@/domain/usecases/search-character'
 import {v4 as uuid} from 'uuid'
 import { MdFavorite, MdRemoveRedEye } from 'react-icons/md'
@@ -36,7 +36,7 @@ const Character: React.FC<SearchCharacter.Model> = ({ name, img, psiPowers }) =>
             </Button>
           </Tooltip>
           <Tooltip label="More details" placement="right">
-            <Button onClick={handleGoToDetailedPage}>
+            <Button onClick={handleGoToDetailedPage} aria-label="click to see more">
               <MdRemoveRedEye />
             </Button> 
           </Tooltip> 
