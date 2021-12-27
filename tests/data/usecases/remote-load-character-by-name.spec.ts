@@ -2,6 +2,7 @@ import * as faker from 'faker'
 import { RemoteLoadCharacterByName } from '@/data/usecases/remote-load-character-by-name'
 import { HttpClientSpy } from '../mocks/mock-http'
 import { HttpStatusCode } from '@/data/protocols/http/http-client'
+import { mockCharacterModel } from '../../domain/mocks/mock-character'
 
 type SutTypes = {
   sut:RemoteLoadCharacterByName
@@ -33,5 +34,16 @@ describe('RemoteLoadCharacterByName', () => {
     }
     const promise = sut.load('bond')
     await expect(promise).rejects.toThrow()
+  })
+
+  it('Should return a CharacterModel if HttpClient returns 200', async () => {
+    const {sut, httpClientSpy} = makeSut()
+    const result = mockCharacterModel()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: result
+    }
+    const httpResponse = await sut.load('bond')
+    expect(httpResponse).toEqual(result)
   })
 });
