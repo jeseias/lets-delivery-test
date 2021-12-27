@@ -17,16 +17,16 @@ const FavoriteCharacter: React.FC<Props> = ({ character:{ img, name }, remove}: 
   const handleGoToDetailedPage = () => navigate(CharacterLink, { state: { name } })
   return (
     <Box>
-      <Image src={img} h="100%"/>
+      <Image src={img} h="100%" aria-label="character image" alt={name} />
       <Heading>{name}</Heading>
       <Flex>
         <Tooltip label="Remove from favorite" placement="left">
-          <Box onClick={() => remove(name)}>
+          <Box onClick={() => remove(name)} aria-label="click to remove from favorites">
             <MdFavorite size="4rem"/>
           </Box>
         </Tooltip>
         <Tooltip label="More details" placement="right" >
-          <Box onClick={handleGoToDetailedPage} cursor="pointer">
+          <Box onClick={handleGoToDetailedPage} cursor="pointer" aria-label="click to see more">
             <MdRemoveRedEye size="4rem" />
           </Box>
         </Tooltip>
