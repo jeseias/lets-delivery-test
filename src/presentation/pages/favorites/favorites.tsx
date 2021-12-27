@@ -20,7 +20,7 @@ const FavoritesPage: React.FC<Props> = ({ fetch, remove }: Props) => {
     <Box p="5vw">
       <Heading>Favorites Page</Heading>
       <Grid gridTemplateColumns="repeat(4, 1fr)" gap="1rem" gridTemplateRows="repeat(auto, 5rem)">
-        {characters.map(character => <FavoriteCharacter key={uuid()} character={character} remove={remove}/>)}
+        {characters.map(character => <FavoriteCharacter key={uuid()} character={character} remove={remove} />)}
       </Grid>
     </Box>
   )

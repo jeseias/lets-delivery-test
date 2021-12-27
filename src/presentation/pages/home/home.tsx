@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Input, Flex } from '@chakra-ui/react'
+import { Box, Input, Flex, Heading } from '@chakra-ui/react'
 import { MdSearch } from 'react-icons/md'
 import { SearchCharacter } from '@/domain/usecases/search-character'
 import { Character } from '@/presentation/components'
@@ -34,11 +34,12 @@ const Homepage: React.FC<Props> = ({ searchCharacter }: Props) => {
 
   return (
     <Box p="5vw">
-      <Flex alignItems="center" h="8rem" border="1px solid #eee">
+      <Heading>Search Character</Heading>
+      <Flex alignItems="center" h="6rem" border="1px solid #eee">
         <Input
           placeholder="Search your character here"
           h="100%"
-          fontSize="4rem"
+          fontSize="3rem"
           border="none"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -47,14 +48,14 @@ const Homepage: React.FC<Props> = ({ searchCharacter }: Props) => {
           borderLeft="1px solid #eee"
           alignItems="center"
           justifyContent="center"
-          w="9rem"
+          w="6rem"
           cursor="pointer"
           bg="#eee"
           h="100%"
           onClick={handleSearchCharacter}
           aria-label="click to search"
         >
-          <MdSearch size="7rem" color="#111"/>
+          <MdSearch size="5rem" color="#111"/>
         </Flex>
       </Flex>
       <Box>

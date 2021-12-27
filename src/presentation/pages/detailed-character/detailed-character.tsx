@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Divider, Flex, Heading, Image, Text, Tooltip } from '@chakra-ui/react'
-import { SearchCharacter } from '@/domain/usecases/search-character'
-import { v4 as uuid } from 'uuid'
 import { MdFavorite, MdFemale, MdMale } from 'react-icons/md'
-import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
 import { useParams } from 'react-router-dom'
-import { FavoriteCharacterModel } from '@/domain/models/character'
+import { v4 as uuid } from 'uuid'
 
-type DetailedCharacterProps = {
+import { SearchCharacter } from '@/domain/usecases/search-character'
+import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
+import { FavoriteCharacterModel } from '@/domain/models/character'
+import { parseSlug } from '@/presentation/utils/utils'
+
+type Props = {
   loadCharacter: LoadCharacterByName
   saveFavorites: (character: FavoriteCharacterModel) => void
 }
 
-const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, saveFavorites }: DetailedCharacterProps) => {
+const DetailedCharacter: React.FC<Props> = ({ loadCharacter, saveFavorites }: Props) => {
   const [character, setCharacter] = useState<SearchCharacter.Model>()
   const [characterName, setCharacterName] = useState('')
   const [loading, setLoading] = useState(false)
@@ -27,7 +29,7 @@ const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, sa
     setLoading(false)
   }
   useEffect(() => {
-    setCharacterName(name.replace('-', ' '))
+    setCharacterName(parseSlug(name))
     handleLoadCharacter()
   }, [name])
 
@@ -38,13 +40,9 @@ const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, sa
     })
   }
 
-  if (loading) {
-    return <p>Loading...</p>
-  }
+  if (loading) return <p>Loading...</p>
 
-  if (!character) {
-    return <p>No Character found</p>
-  }
+  if (!character) return <p>No Character found</p>
 
   return (
     <Flex p="2rem" my="1rem" alignItems="center">
