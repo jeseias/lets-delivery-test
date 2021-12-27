@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { MdFavorite, MdRemoveRedEye } from 'react-icons/md'
 import { Box, Flex, Heading, Image, Tooltip } from '@chakra-ui/react'
 import { FavoriteCharacterModel } from '@/domain/models/character'
-import { AppRoutes } from '@/main/constants'
+import { makeDetailedRoute } from '@/presentation/utils/utils'
 
 type Props = {
   character: FavoriteCharacterModel
@@ -12,9 +12,7 @@ type Props = {
 
 const FavoriteCharacter: React.FC<Props> = ({ character: { img, name }, remove }: Props) => {
   const navigate = useNavigate()
-  const slug = name.replace(' ', '-')
-  const CharacterLink = `${AppRoutes.Characters}/${slug}`
-  const handleGoToDetailedPage = () => navigate(CharacterLink, { state: { name } })
+  const handleGoToDetailedPage = () => navigate(makeDetailedRoute(name), { state: { name } })
   return (
     <Box>
       <Image src={img} h="100%" aria-label="character image" alt={name} />

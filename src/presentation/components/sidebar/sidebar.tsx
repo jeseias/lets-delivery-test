@@ -1,25 +1,16 @@
 import React from 'react'
-import { Box, Heading } from '@chakra-ui/react'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { AppRoutes } from '@/main/constants'
-
-const routes = [
-  {
-    name: 'Search',
-    route: AppRoutes.Home
-  },
-  {
-    name: 'Favorites',
-    route: AppRoutes.Favorites
-  }
-]
+import { routes } from './sidebar.data'
 
 const Sidebar:React.FC = () => {
   const navigate = useNavigate()
   return (
     <Box gridColumn="1/2" gridRow="1/-1" borderRight="1px solid #eee">
-      <Heading>Sidebar</Heading>
+      <Flex alignItems="center" justifyContent="center" p="3rem 2rem">
+        <Heading>Menu</Heading>
+      </Flex>
       <Box mt="5rem" p="1rem">
         {routes.map(item => (
           <Box
