@@ -2,6 +2,7 @@ import { RemoteSearchCharacter } from '@/data/usecases/remote-search-character'
 import { HttpClientSpy } from '../mocks/mock-http'
 import * as faker from 'faker'
 import { HttpStatusCode } from '@/data/protocols/http/http-client'
+import { mockCharacterModel } from '../../domain/mocks/mock-character'
 
 type SutTypes = {
   sut: RemoteSearchCharacter
@@ -33,5 +34,16 @@ describe('RemoteSearchCharacter', () => {
     }
     const promise = sut.search('bond')
     await expect(promise).rejects.toThrow()
+  })
+
+  it('Should return a CharacterModel if HttpClient returns 200', async () => {
+    const {sut, httpClientSpy} = makeSut()
+    const result = mockCharacterModel()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.ok,
+      body: result
+    }
+    const httpResponse = await sut.search('bond')
+    expect(httpResponse).toEqual(result)
   })
 });

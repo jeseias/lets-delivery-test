@@ -4,7 +4,7 @@ import * as faker from 'faker'
 
 export const mockCharacterModel = (): Character => ({
   name: faker.name.gender(),
-  gender: faker.name.gender() as any,
+  gender: faker.random.arrayElement(['male', 'female']) as any,
   img: faker.image.image(),
   psiPowers: [
     {
