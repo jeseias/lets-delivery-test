@@ -57,7 +57,7 @@ const Homepage: React.FC<HomepageProps> = ({ searchCharacter }) => {
         </Flex>
       </Flex>
       <Box>
-        {loading && <h1>Loading...</h1>}
+        {loading && <p>Loading...</p>}
         {!loading && error && <h1>Character Not Found</h1>}
         {character && <Character {...character} />}
       </Box>

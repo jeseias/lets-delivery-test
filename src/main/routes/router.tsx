@@ -10,7 +10,7 @@ const Router: React.FC = () => {
       <Wrapper>
         <Routes>
           <Route path={AppRoutes.Home}  element={<MakeHomePage />}/>
-          <Route path={AppRoutes.Favorites}  element={<MakeFavoritesPage />}/>
+          <Route path={AppRoutes.Favorites} element={<MakeFavoritesPage />}/>
           <Route path={`${AppRoutes.Characters}/:name`} element={<MakeDetailedCharacterPage />} />
         </Routes>
       </Wrapper>
