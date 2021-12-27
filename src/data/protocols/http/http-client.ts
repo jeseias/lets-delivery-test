@@ -12,12 +12,10 @@ export type HttpRequest = {
   headers?: any
 }
 
-export type HttpResponse<T = any> =  {
+export type HttpResponse<T = any> = {
   statusCode: HttpStatusCode
   body?: T
 }
 export interface HttpClient<R = any> {
   request(data: HttpRequest): Promise<HttpResponse<R>>
 }
-
-

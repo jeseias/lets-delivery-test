@@ -21,7 +21,7 @@ const makeSut = (url: string = faker.internet.url()): SutTypes => {
 describe('RemoteSearchCharacter', () => {
   it('Should call HttpClient with correct values', async () => {
     const url = faker.internet.url()
-    const {sut, httpClientSpy} = makeSut(url)
+    const { sut, httpClientSpy } = makeSut(url)
     await sut.search('bond')
     expect(httpClientSpy.url).toBe(`${url}?name=bond`)
     expect(httpClientSpy.method).toBe('get')
@@ -37,7 +37,7 @@ describe('RemoteSearchCharacter', () => {
   })
 
   it('Should return a CharacterModel if HttpClient returns 200', async () => {
-    const {sut, httpClientSpy} = makeSut()
+    const { sut, httpClientSpy } = makeSut()
     const result = mockCharacterModel()
     httpClientSpy.response = {
       statusCode: HttpStatusCode.ok,
@@ -46,4 +46,4 @@ describe('RemoteSearchCharacter', () => {
     const httpResponse = await sut.search('bond')
     expect(httpResponse).toEqual(result)
   })
-});
+})

@@ -1,9 +1,9 @@
-import { UnexpectedError } from "@/domain/errors/unexpected-error";
-import { SearchCharacter } from "@/domain/usecases/search-character";
-import { HttpClient, HttpStatusCode } from "../protocols/http/http-client";
+import { UnexpectedError } from '@/domain/errors/unexpected-error'
+import { SearchCharacter } from '@/domain/usecases/search-character'
+import { HttpClient, HttpStatusCode } from '../protocols/http/http-client'
 
 export class RemoteSearchCharacter implements SearchCharacter {
-  constructor(
+  constructor (
     private readonly url: string,
     private readonly httpClient: HttpClient<SearchCharacter.Model>
   ) {}

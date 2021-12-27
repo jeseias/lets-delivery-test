@@ -10,11 +10,11 @@ type Props = {
 
 const FavoritesPage: React.FC<Props> = ({ fetch, remove }: Props) => {
   const [characters, setCharacters] = useState<FavoriteCharacterModel[]>([])
-  
+
   useEffect(() => {
     setCharacters(fetch())
   }, [characters])
-  
+
   return (
     <Box p="5vw">
       <Heading>Favorites Page</Heading>

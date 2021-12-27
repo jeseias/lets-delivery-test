@@ -1,9 +1,9 @@
-import { UnexpectedError } from "@/domain/errors/unexpected-error";
-import { LoadCharacterByName } from "@/domain/usecases/load-character-by-name";
-import { HttpClient, HttpStatusCode } from "@/data/protocols/http/http-client";
+import { UnexpectedError } from '@/domain/errors/unexpected-error'
+import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
+import { HttpClient, HttpStatusCode } from '@/data/protocols/http/http-client'
 
 export class RemoteLoadCharacterByName implements LoadCharacterByName {
-  constructor(
+  constructor (
     private readonly url: string,
     private readonly httpClient: HttpClient<LoadCharacterByName.Model>
   ) {}

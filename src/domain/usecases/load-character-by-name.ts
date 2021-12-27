@@ -1,4 +1,4 @@
-import { Character } from "../models/character";
+import { Character } from '@/domain/models/character'
 
 export interface LoadCharacterByName {
   load(name: string): Promise<Character>

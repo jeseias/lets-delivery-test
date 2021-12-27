@@ -4,7 +4,7 @@ export type RemoteCharacterModel = {
   img: string
   gender: 'male' | 'female'
   psiPowers: {
-    description: string 
+    description: string
     img: string
     name: string
   }[]

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Button, Divider, Flex, Heading, Image, Text, Tooltip } from "@chakra-ui/react"
+import { Box, Button, Divider, Flex, Heading, Image, Text, Tooltip } from '@chakra-ui/react'
 import { SearchCharacter } from '@/domain/usecases/search-character'
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 import { MdFavorite, MdFemale, MdMale } from 'react-icons/md'
 import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
 import { useParams } from 'react-router-dom'
@@ -14,26 +14,38 @@ type DetailedCharacterProps = {
 
 const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, saveFavorites }: DetailedCharacterProps) => {
   const [character, setCharacter] = useState<SearchCharacter.Model>()
-  const characterName = useParams().name.replace('-', ' ')
-  const handleLoadCharacter = async () => {
+  const [loading, setLoading] = useState(false)
+  const name = useParams().name
+
+  const handleLoadCharacter = async (characterName: string) => {
+    setLoading(true)
     const httpResponse = await loadCharacter.load(characterName)
-    setCharacter(httpResponse)
+    if (httpResponse) {
+      setCharacter(httpResponse)
+    }
+    setLoading(false)
   }
-  useEffect(() => { handleLoadCharacter() }, [])
-  if (!character) {
-    return <p>Loading...</p>
-  }
+  useEffect(() => { handleLoadCharacter(name.replace('-', ' ')) }, [name])
 
   const handleAddToFavorites = () => {
     saveFavorites({
-      name: characterName,
+      name: 'characterName',
       img: character.img
     })
   }
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (!character) {
+    return <p>No Character found</p>
+  }
+
   return (
     <Flex p="2rem" my="1rem" alignItems="center">
       <Box mr="2rem" h="100%">
-        <Image src={character.img} height="100%" />
+        <Image src={character.img} height="100%" alt={character.name} />
       </Box>
       <Box>
         <Heading fontSize="6xl" textTransform="uppercase">{character.name}</Heading>
@@ -58,10 +70,10 @@ const DetailedCharacter: React.FC<DetailedCharacterProps> = ({ loadCharacter, sa
             <Button mr="1rem" onClick={handleAddToFavorites}>
               <MdFavorite />
             </Button>
-          </Tooltip> 
+          </Tooltip>
           <Tooltip label={character.gender} placement="right">
             <Box>
-              {character.gender === 'male' ? <MdMale size="3rem" /> : <MdFemale size="3rem" />}
+              {character.gender === 'male' ? <MdMale size="3rem" aria-label="male" /> : <MdFemale size="3rem" aria-label="female" />}
             </Box>
           </Tooltip>
         </Flex>

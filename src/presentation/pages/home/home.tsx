@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import { Box, Input, Flex } from '@chakra-ui/react'
 import { MdSearch } from 'react-icons/md'
 import { SearchCharacter } from '@/domain/usecases/search-character'
@@ -35,22 +35,22 @@ const Homepage: React.FC<HomepageProps> = ({ searchCharacter }) => {
   return (
     <Box p="5vw">
       <Flex alignItems="center" h="8rem" border="1px solid #eee">
-        <Input 
-          placeholder="Search your character here" 
-          h="100%" 
-          fontSize="4rem" 
-          border="none" 
-          value={name} 
+        <Input
+          placeholder="Search your character here"
+          h="100%"
+          fontSize="4rem"
+          border="none"
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <Flex 
-          borderLeft="1px solid #eee"   
-          alignItems="center" 
-          justifyContent="center" 
-          w="9rem" 
-          cursor="pointer" 
-          bg="#eee" 
-          h="100%" 
+        <Flex
+          borderLeft="1px solid #eee"
+          alignItems="center"
+          justifyContent="center"
+          w="9rem"
+          cursor="pointer"
+          bg="#eee"
+          h="100%"
           onClick={handleSearchCharacter}
         >
           <MdSearch size="7rem" color="#111"/>

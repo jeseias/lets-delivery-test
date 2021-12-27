@@ -1,9 +1,9 @@
-import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from "@/data/protocols/http/http-client";
+import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from '@/data/protocols/http/http-client'
 import * as faker from 'faker'
 
 export const mockHttpRequest = (): HttpRequest => ({
   url: faker.internet.url(),
-  method: faker.random.arrayElement(['get','post', 'put', 'delete']),
+  method: faker.random.arrayElement(['get', 'post', 'put', 'delete']),
   body: faker.random.objectElement(),
   headers: faker.random.objectElement()
 })
@@ -16,7 +16,7 @@ export class HttpClientSpy<R = any> implements HttpClient<R> {
   response: HttpResponse<R> = {
     statusCode: HttpStatusCode.ok
   }
-  
+
   async request (data: HttpRequest): Promise<HttpResponse<R>> {
     this.url = data.url
     this.method = data.method

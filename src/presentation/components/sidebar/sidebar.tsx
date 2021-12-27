@@ -11,7 +11,7 @@ const routes = [
   },
   {
     name: 'Favorites',
-    route:  AppRoutes.Favorites
+    route: AppRoutes.Favorites
   }
 ]
 
@@ -22,13 +22,13 @@ const Sidebar:React.FC = () => {
       <Heading>Sidebar</Heading>
       <Box mt="5rem" p="1rem">
         {routes.map(item => (
-          <Box 
-            key={uuid()} 
-            onClick={() => navigate(item.route)} 
-            borderRadius=".2rem" 
-            fontSize="1.5rem" 
-            my=".5rem" 
-            cursor="pointer" 
+          <Box
+            key={uuid()}
+            onClick={() => navigate(item.route)}
+            borderRadius=".2rem"
+            fontSize="1.5rem"
+            my=".5rem"
+            cursor="pointer"
             bg="blackAlpha.100"
             p="1rem 2rem"
             transition="all ease-in-out .25s"

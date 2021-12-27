@@ -1,16 +1,16 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom';
-import { MdFavorite, MdRemoveRedEye } from 'react-icons/md';
-import { Box, Flex, Heading, Image, Tooltip } from '@chakra-ui/react';
-import { FavoriteCharacterModel } from '@/domain/models/character';
-import { AppRoutes } from '@/main/constants';
+import { useNavigate } from 'react-router-dom'
+import { MdFavorite, MdRemoveRedEye } from 'react-icons/md'
+import { Box, Flex, Heading, Image, Tooltip } from '@chakra-ui/react'
+import { FavoriteCharacterModel } from '@/domain/models/character'
+import { AppRoutes } from '@/main/constants'
 
 type Props = {
   character: FavoriteCharacterModel
   remove: (name: string) => void
 }
 
-const FavoriteCharacter: React.FC<Props> = ({ character:{ img, name }, remove}: Props) => {
+const FavoriteCharacter: React.FC<Props> = ({ character: { img, name }, remove }: Props) => {
   const navigate = useNavigate()
   const slug = name.replace(' ', '-')
   const CharacterLink = `${AppRoutes.Characters}/${slug}`
@@ -35,4 +35,4 @@ const FavoriteCharacter: React.FC<Props> = ({ character:{ img, name }, remove}: 
   )
 }
 
-export default FavoriteCharacter;
+export default FavoriteCharacter

@@ -3,13 +3,13 @@ export type Character = {
   img: string
   gender: 'male' | 'female'
   psiPowers: {
-    description: string 
+    description: string
     img: string
     name: string
   }[]
 }
 
 export type FavoriteCharacterModel = {
-  name: string 
+  name: string
   img: string
 }
