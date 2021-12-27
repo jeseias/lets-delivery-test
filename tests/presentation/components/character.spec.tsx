@@ -23,4 +23,13 @@ describe(`${Character.name} Component`, () => {
     character.psiPowers.forEach(item => expect(screen.getByText(item.name)).toBeInTheDocument())
     expect(screen.getByLabelText('click to see more')).toBeInTheDocument()
   }) 
+
+  it('Should route to DetailedCharacter page when see more button is clicked', () => { 
+    makeSut();
+    const slug = character.name.replace(' ', '-')
+    const CharacterLink = `${AppRoutes.Characters}/${slug}` 
+    const btn = screen.getByLabelText('click to see more')
+    fireEvent.click(btn) 
+    expect(useNavigate()).toHaveBeenCalledWith(CharacterLink, { state: {name: character.name} })
+  })
 });
