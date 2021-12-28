@@ -29,12 +29,12 @@ const DetailedCharacter: React.FC<Props> = ({ loadCharacter, saveFavorites }: Pr
     setLoading(false)
   }
   useEffect(() => {
-    setCharacterName(parseSlug(name))
+    name && setCharacterName(parseSlug(name))
     handleLoadCharacter()
   }, [name])
 
   const handleAddToFavorites = () => {
-    saveFavorites({
+    character && saveFavorites({
       name: characterName,
       img: character.img
     })

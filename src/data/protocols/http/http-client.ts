@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export type HttpMethod = 'post' | 'get' | 'put' | 'delete'
 
 export enum HttpStatusCode {

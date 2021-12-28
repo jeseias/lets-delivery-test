@@ -1,4 +1,4 @@
-import { UnexpectedError } from '@/domain/errors/unexpected-error'
+import { UnexpectedError } from '@/domain/errors'
 import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
 import { HttpClient, HttpStatusCode } from '@/data/protocols/http/http-client'
 

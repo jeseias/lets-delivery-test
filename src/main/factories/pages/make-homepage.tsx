@@ -1,6 +1,6 @@
 import React from 'react'
 import { HomePage } from '@/presentation/pages'
-import { makeRemoteSearchCharacter } from '@/main/factories/usecases/remote-search-characters-factory'
+import { makeRemoteSearchCharacter } from '@/main/factories/usecases'
 
 export const MakeHomePage: React.FC = () => {
   return (
