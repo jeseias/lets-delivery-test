@@ -2,7 +2,7 @@
 
 ### Code observation
 
-- While building this project I focused more on **clean code**. Ensuring that the code is **100%** **readable**, **understandable**, **maintainable** and **scalable**. I do understand that the **UI** can be improved, but I didn't put to much effort on create a super appealing application to the eye. But a fully **functional**, **scalable** and code that can be trusted because of the **tests**.
+While building this project I focused more on **clean code**. Ensuring that the code is **100%** **readable**, **understandable**, **maintainable** and **scalable**. I do understand that the **UI** can be improved, but I didn't put to much effort on create a super appealing application to the eye. But a fully **functional**, **scalable** and code that can be trusted because of the **tests**.
 
 [Access project live here](https://lets-delivery-test.vercel.app/)
 
