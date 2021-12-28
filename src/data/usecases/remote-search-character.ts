@@ -15,7 +15,7 @@ export class RemoteSearchCharacter implements SearchCharacter {
     })
 
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok: return httpResponse.body
+      case HttpStatusCode.ok: return (httpResponse.body as SearchCharacter.Model)
       default: throw new UnexpectedError()
     }
   }

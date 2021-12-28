@@ -15,7 +15,7 @@ export class RemoteLoadCharacterByName implements LoadCharacterByName {
     })
 
     switch (httpResponse.statusCode) {
-      case HttpStatusCode.ok: return httpResponse.body
+      case HttpStatusCode.ok: return (httpResponse.body as LoadCharacterByName.Model)
       default: throw new UnexpectedError()
     }
   }

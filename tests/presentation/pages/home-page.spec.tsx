@@ -41,7 +41,7 @@ describe('Homepage Component', () => {
 
   it('Should remove loader and show error if no character was found', async () => {
     const { sut, searchCharacter } = makeSut()
-    jest.spyOn(searchCharacter, 'search').mockResolvedValueOnce(null)
+    jest.spyOn(searchCharacter, 'search').mockReturnValueOnce(null as any)
     sut()
     expect(screen.queryByText('Character Not Found')).not.toBeInTheDocument()
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument()

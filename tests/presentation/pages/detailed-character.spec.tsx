@@ -79,7 +79,7 @@ describe('DetailedCharacterPage', () => {
 
   it('Should render NotFound if LoadCharacterByName returns 404', async () => {
     const { loadCharacter, sut } = makeSut()
-    jest.spyOn(loadCharacter, 'load').mockReturnValueOnce(null)
+    jest.spyOn(loadCharacter, 'load').mockReturnValueOnce(null as any)
     sut()
 
     expect(screen.getByText('Loading...')).toBeInTheDocument()
