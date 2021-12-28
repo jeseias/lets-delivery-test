@@ -7,12 +7,30 @@ While building this project I focused more on **clean code**. Ensuring that the 
 [Access project live here](https://lets-delivery-test.vercel.app/)
 
 ## Principles
+  - Clean Architecture
   - SOLID
   - Separation of Concerns (SOC)
   - Don't Repeat Yourself (DRY)
   - You Aren't Gonna Need It (YAGNI)
   - Keep It Simple, Silly (KISS)
   - Composition Over Inheritance
+
+## Technologies & WorkFlow
+- ReactJS
+- Jest
+- ChakraUI
+- Axios
+- ReactRouterDOM
+- Git
+- Eslint
+- yarn
+- faker
+- React Testing Library
+- Jest
+- Typescript
+
+
+
 
 # How To Run
 
