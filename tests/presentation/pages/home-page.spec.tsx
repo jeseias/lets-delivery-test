@@ -4,6 +4,7 @@ import { HomePage } from '@/presentation/pages'
 import { fireEvent, RenderResult, screen, waitFor } from '@testing-library/react'
 import { mockRemoteCharacterModel } from '../../data/mocks/mock-remote-character'
 import { __render } from '../mocks/render-helper'
+import { SearchCharacterSpy } from './mocks/mock-search-character'
 
 type SutTypes = {
   sut: () => RenderResult
@@ -12,11 +13,6 @@ type SutTypes = {
 
 const data = mockRemoteCharacterModel()
 const makeSut = (): SutTypes => {
-  class SearchCharacterSpy implements SearchCharacter {
-    async search (name: string): Promise<SearchCharacter.Model> {
-      return data
-    }
-  }
   const searchCharacter = new SearchCharacterSpy()
   const sut = () => __render(() => <HomePage searchCharacter={searchCharacter} />)
   return {
@@ -27,7 +23,9 @@ const makeSut = (): SutTypes => {
 
 describe('Homepage Component', () => {
   it('Should render as expected', () => {
-    makeSut().sut()
+    const { sut, searchCharacter } = makeSut()
+    jest.spyOn(searchCharacter, 'search').mockReturnValueOnce(data as any)
+    sut()
     expect(screen.getByPlaceholderText('Search your character here')).toBeInTheDocument()
     expect(screen.getByLabelText('click to search')).toBeInTheDocument()
   })
@@ -51,7 +49,9 @@ describe('Homepage Component', () => {
   })
 
   it('Should render character data as expected', async () => {
-    makeSut().sut()
+    const { sut, searchCharacter } = makeSut()
+    jest.spyOn(searchCharacter, 'search').mockReturnValueOnce(data as any)
+    sut()
     expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
     fireEvent.click(screen.getByLabelText('click to search'))
     await waitFor(() => expect(screen.getByText('Loading...')).toBeInTheDocument())
