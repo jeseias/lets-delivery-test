@@ -24,7 +24,6 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@rollup/plugin-alias": "^3.1.8",
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@types/faker": "^5.5.9",
