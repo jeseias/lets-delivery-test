@@ -18,7 +18,7 @@ const DetailedCharacter: React.FC<Props> = ({ loadCharacter, saveFavorites }: Pr
   const [character, setCharacter] = useState<SearchCharacter.Model>()
   const [characterName, setCharacterName] = useState('')
   const [loading, setLoading] = useState(false)
-  const name = useParams().name
+  const name = useParams().name as string
 
   const handleLoadCharacter = async () => {
     setLoading(true)
@@ -29,7 +29,7 @@ const DetailedCharacter: React.FC<Props> = ({ loadCharacter, saveFavorites }: Pr
     setLoading(false)
   }
   useEffect(() => {
-    name && setCharacterName(parseSlug(name))
+    setCharacterName(parseSlug(name))
     handleLoadCharacter()
   }, [name])
 

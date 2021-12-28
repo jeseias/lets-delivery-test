@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Button, Divider, Flex, Heading, Image, Tooltip } from '@chakra-ui/react'
-import { MdFavorite, MdRemoveRedEye } from 'react-icons/md'
+import { MdRemoveRedEye } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -29,11 +29,6 @@ const Character: React.FC<SearchCharacter.Model> = ({ name, img, psiPowers }) =>
           }
         </Box>
         <Flex mt="1rem">
-          <Tooltip label="Add to favorites" placement="left">
-            <Button mr="1rem">
-              <MdFavorite />
-            </Button>
-          </Tooltip>
           <Tooltip label="More details" placement="right">
             <Button onClick={handleGoToDetailedPage} aria-label="click to see more">
               <MdRemoveRedEye />
