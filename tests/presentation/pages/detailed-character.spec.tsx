@@ -1,10 +1,10 @@
 import React from 'react'
-import { Character } from '@/domain/models/character'
 import { LoadCharacterByName } from '@/domain/usecases/load-character-by-name'
 import { DetailedCharacterPage } from '@/presentation/pages'
 import { __render } from '../mocks/render-helper'
 import { fireEvent, RenderResult, screen, waitFor } from '@testing-library/react'
 import { mockCharacterModel } from '../../domain/mocks/mock-character'
+import { LoadCharacterByNameSpy } from './mocks/mock-load-character-by-name'
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom') as any,
@@ -19,11 +19,6 @@ type SutTypes = {
 }
 
 const makeSut = (): SutTypes => {
-  class LoadCharacterByNameSpy implements LoadCharacterByName {
-    async load (name: string): Promise<Character> {
-      return data
-    }
-  }
   const saveFavorites = jest.fn()
   const loadCharacter = new LoadCharacterByNameSpy()
   const sut = () => __render(() =>
@@ -42,7 +37,9 @@ const makeSut = (): SutTypes => {
 
 describe('DetailedCharacterPage', () => {
   it('Should render as expected with all character data', async () => {
-    makeSut().sut()
+    const { sut, loadCharacter } = makeSut()
+    jest.spyOn(loadCharacter, 'load').mockReturnValueOnce(data as any)
+    sut()
 
     expect(screen.getByText('Loading...')).toBeInTheDocument()
     await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
@@ -54,7 +51,9 @@ describe('DetailedCharacterPage', () => {
   })
 
   it.each(data.psiPowers)('Should render each character power', async item => {
-    makeSut().sut()
+    const { sut, loadCharacter } = makeSut()
+    jest.spyOn(loadCharacter, 'load').mockReturnValueOnce(data as any)
+    sut()
 
     expect(screen.getByText('Loading...')).toBeInTheDocument()
     await waitFor(() => expect(screen.queryByText('Loading...')).not.toBeInTheDocument())
@@ -64,7 +63,8 @@ describe('DetailedCharacterPage', () => {
   })
 
   it('Should call saveFavorites with call correct values', async () => {
-    const { saveFavorites, sut } = makeSut()
+    const { sut, loadCharacter, saveFavorites } = makeSut()
+    jest.spyOn(loadCharacter, 'load').mockReturnValueOnce(data as any)
     sut()
 
     expect(screen.getByText('Loading...')).toBeInTheDocument()
