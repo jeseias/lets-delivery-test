@@ -4,7 +4,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "type-check": "tsc --pretty --noEmit",
+    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "test": "jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "yarn test -- --watch",
+    "test:ci": "yarn test -- --coverage"
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.3",
